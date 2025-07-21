@@ -30,7 +30,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amazon.in/dp/B08ABC/"
     },
-    availability: "india",
+    availability: "global",
     category: "budget",
     features: [
       "WiFi + Bluetooth",
@@ -48,7 +48,7 @@ const PRODUCTS = [
     affiliate: {
       us: "https://amazon.com/dp/B07USCOFFEE/"
     },
-    availability: "us",
+    availability: "global",
     category: "premium",
     features: [
       "Alexa integration",
@@ -69,7 +69,7 @@ const PRODUCTS = [
       us: null,
       global: "https://amazon.com/dp/GLOBPROD1"
     },
-    availability: "us",
+    availability: "global",
     category: "budget",
     features: [
       "Smart control system",
@@ -157,7 +157,7 @@ const PRODUCTS = [
     us: "https://amazon.com/dp/USPROD5",
     global: null
   },
-  availability: "india",
+  availability: "global",
   category: "premium",
   features: [
     "Smart control system",
@@ -179,7 +179,7 @@ const PRODUCTS = [
     us: null,
     global: "https://amazon.com/dp/GLOBPROD6"
   },
-  availability: "us",
+  availability: "global",
   category: "premium",
   features: [
     "Smart control system",
@@ -201,7 +201,7 @@ const PRODUCTS = [
     us: "https://amazon.com/dp/USPROD7",
     global: "https://amazon.com/dp/GLOBPROD7"
   },
-  availability: "us",
+  availability: "global",
   category: "premium",
   features: [
     "Smart control system",
@@ -223,7 +223,7 @@ const PRODUCTS = [
     us: null,
     global: null
   },
-  availability: "us",
+  availability: "global",
   category: "midrange",
   features: [
     "Smart control system",
@@ -245,7 +245,7 @@ const PRODUCTS = [
     us: "https://amazon.com/dp/USPROD9",
     global: null
   },
-  availability: "us",
+  availability: "global",
   category: "midrange",
   features: [
     "Smart control system",
@@ -267,7 +267,7 @@ const PRODUCTS = [
     us: null,
     global: "https://amazon.com/dp/GLOBPROD10"
   },
-  availability: "india",
+  availability: "global",
   category: "premium",
   features: [
     "Smart control system",
@@ -289,7 +289,7 @@ const PRODUCTS = [
     us: "https://amazon.com/dp/USPROD11",
     global: null
   },
-  availability: "india",
+  availability: "global",
   category: "premium",
   features: [
     "Smart control system",
@@ -330,7 +330,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amzn.to/3MODAK",
     },
-    availability: "india",
+    availability: "global",
     category: "budget",
     features: [
       "Easy shaping",
@@ -348,7 +348,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amzn.to/3LEDDIYAS",
     },
-    availability: "india",
+    availability: "global",
     category: "budget",
     features: [
       "Rechargeable",
@@ -387,7 +387,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amzn.to/MITHAIPACK",
     },
-    availability: "india",
+    availability: "global",
     category: "budget",
     features: [
       "Air-tight sealing",
@@ -425,7 +425,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amzn.to/GANESHFRAME",
     },
-    availability: "india",
+    availability: "global",
     category: "midrange",
     features: [
       "HD image rotation",
@@ -443,7 +443,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amzn.to/OILDISP",
     },
-    availability: "india",
+    availability: "global",
     category: "budget",
     features: [
       "One-touch operation",
@@ -481,7 +481,7 @@ const PRODUCTS = [
     affiliate: {
       india: "https://amzn.to/LADDUMIX",
     },
-    availability: "india",
+    availability: "global",
     category: "midrange",
     features: [
       "Heavy-duty motor",
