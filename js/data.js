@@ -489,6 +489,216 @@ const PRODUCTS = [
       "Multi-purpose usage"
     ],
     tags: ["festival", "editors"]
+  },
+  {
+    id: "airfryer-touch-digital",
+    title: "Smart Touch Air Fryer",
+    description: "Healthy oil-free cooking for Diwali snacks or Christmas treats. App controlled & programmable.",
+    images: ["assets/global/airfryer.jpg"],
+    priceINR: 4999,
+    priceUSD: 59,
+    affiliate: {
+      india: "https://amzn.to/3INDIAAIR",
+      us: "https://amazon.com/dp/B0USAIRFRY",
+      global: "https://amazon.com/dp/B0USAIRFRY"
+    },
+    availability: "global",
+    category: "midrange",
+    features: [
+      "Rapid hot air tech",
+      "App-based presets",
+      "Great for festival snacks"
+    ],
+    tags: ["global", "festival", "trending"]
+  },
+  {
+    id: "portable-smoothie-blender",
+    title: "USB Rechargeable Smoothie Blender",
+    description: "Perfect for travel, fitness & festive detox drinks — charge via USB, easy clean.",
+    images: ["assets/global/portable_blender.jpg"],
+    priceINR: 1299,
+    priceUSD: 19,
+    affiliate: {
+      india: "https://amzn.to/INDIAPORTBLEND",
+      us: "https://amazon.com/dp/B0PORTABLEBLND",
+      global: "https://amazon.com/dp/B0PORTABLEBLND"
+    },
+    availability: "global",
+    category: "budget",
+    features: [
+      "USB chargeable",
+      "Fits in a cup holder",
+      "Smoothies on-the-go"
+    ],
+    tags: ["global", "health", "trending"]
+  },
+  {
+    id: "chai-latte-machine",
+    title: "Automatic Chai & Latte Machine",
+    description: "For authentic masala chai or spiced lattes during festive mornings. Loved by NRIs.",
+    images: ["assets/global/chai_latte.jpg"],
+    priceINR: 6999,
+    priceUSD: 89,
+    affiliate: {
+      india: "https://amzn.to/CHAILATTEMKR",
+      us: "https://amazon.com/dp/B0CHAILTTE",
+      global: "https://amazon.com/dp/B0CHAILTTE"
+    },
+    availability: "global",
+    category: "premium",
+    features: [
+      "Steams & brews automatically",
+      "Detachable milk frother",
+      "Perfect for festive guests"
+    ],
+    tags: ["festival", "chai", "premium", "global"]
+  },
+  {
+    id: "samosa-maker",
+    title: "Electric Samosa & Snack Maker",
+    description: "Make crispy samosas, empanadas or dumplings in minutes — great for Holi & Diwali!",
+    images: ["assets/global/samosa_maker.jpg"],
+    priceINR: 2499,
+    priceUSD: 32,
+    affiliate: {
+      india: "https://amzn.to/SAMOSAMKR",
+      us: "https://amazon.com/dp/B0SAMOUSA",
+      global: "https://amazon.com/dp/B0SAMOUSA"
+    },
+    availability: "global",
+    category: "midrange",
+    features: [
+      "Non-stick plates",
+      "Ready in 5 minutes",
+      "Festival-friendly cooking"
+    ],
+    tags: ["festival", "trending", "global"]
+  },
+  {
+    id: "ganesha-light-projector",
+    title: "Ganesha LED Light Projector",
+    description: "Light up walls or ceilings with rotating Ganesha or Diwali patterns. Magical for NRI homes!",
+    images: ["assets/global/ganesha_projector.jpg"],
+    priceINR: 1799,
+    priceUSD: 24,
+    affiliate: {
+      india: "https://amzn.to/GANESHPROJ",
+      us: "https://amazon.com/dp/B0GPROJNR",
+      global: "https://amazon.com/dp/B0GPROJNR"
+    },
+    availability: "global",
+    category: "budget",
+    features: [
+      "Festive light projections",
+      "USB powered",
+      "Auto-rotate feature"
+    ],
+    tags: ["festival", "nri", "diwali", "global"]
+  },
+  {
+    id: "touch-kitchen-compost-bin",
+    title: "Smart Touch Compost Bin",
+    description: "Eco-friendly & odor-free waste disposal during festive cooking sessions.",
+    images: ["assets/global/compost_bin.jpg"],
+    priceINR: 2999,
+    priceUSD: 38,
+    affiliate: {
+      india: "https://amzn.to/SMARTBIN",
+      us: "https://amazon.com/dp/B0COMPOST",
+      global: "https://amazon.com/dp/B0COMPOST"
+    },
+    availability: "global",
+    category: "midrange",
+    features: [
+      "Touch-activated lid",
+      "Charcoal filter",
+      "Reduces festive kitchen waste"
+    ],
+    tags: ["eco", "festival", "trending"]
+  },
+  {
+    id: "rotating-snack-tray",
+    title: "Automatic Rotating Snack Tray",
+    description: "Festive snacking meets automation — spins open like a flower for guests!",
+    images: ["assets/global/snack_tray.jpg"],
+    priceINR: 1899,
+    priceUSD: 22,
+    affiliate: {
+      india: "https://amzn.to/SNACKROTATE",
+      us: "https://amazon.com/dp/B0AUTOSNACK",
+      global: "https://amazon.com/dp/B0AUTOSNACK"
+    },
+    availability: "global",
+    category: "budget",
+    features: [
+      "One-touch opening",
+      "6 sections",
+      "Fun for Rakhi or Diwali gatherings"
+    ],
+    tags: ["festival", "viral", "global"]
+  },
+  {
+    id: "electronic-masala-box",
+    title: "Electronic Masala Box",
+    description: "Digitally organized spice box for Indian and global kitchens. Auto open + sensor light.",
+    images: ["assets/global/masala_box.jpg"],
+    priceINR: 3499,
+    priceUSD: 42,
+    affiliate: {
+      india: "https://amzn.to/MASALABOX",
+      us: "https://amazon.com/dp/B0MASALA",
+      global: "https://amazon.com/dp/B0MASALA"
+    },
+    availability: "global",
+    category: "midrange",
+    features: [
+      "Sensor lid open",
+      "7 compartments",
+      "Ideal for festive cooking"
+    ],
+    tags: ["trending", "global", "spice"]
+  },
+  {
+    id: "festival-cookie-press",
+    title: "Festival Cookie & Mithai Press Kit",
+    description: "Make designer sweets for Christmas or Diwali — includes multiple molds and press heads.",
+    images: ["assets/global/cookie_press.jpg"],
+    priceINR: 1099,
+    priceUSD: 15,
+    affiliate: {
+      india: "https://amzn.to/COOKIEPRESS",
+      us: "https://amazon.com/dp/B0COOKIPRESS",
+      global: "https://amazon.com/dp/B0COOKIPRESS"
+    },
+    availability: "global",
+    category: "budget",
+    features: [
+      "Interchangeable heads",
+      "Food-safe material",
+      "Great for holiday gifting"
+    ],
+    tags: ["holiday", "baking", "festival"]
+  },
+  {
+    id: "usb-diya-fairy-string",
+    title: "USB Diya & Fairy String Lights",
+    description: "Decorate globally — festival-ready lighting for homes, balconies, pooja corners.",
+    images: ["assets/global/diya_fairy.jpg"],
+    priceINR: 899,
+    priceUSD: 11,
+    affiliate: {
+      india: "https://amzn.to/DIYASTRING",
+      us: "https://amazon.com/dp/B0DIYALED",
+      global: "https://amazon.com/dp/B0DIYALED"
+    },
+    availability: "global",
+    category: "budget",
+    features: [
+      "Warm diya glow",
+      "USB + remote control",
+      "Reusable for all occasions"
+    ],
+    tags: ["global", "diwali", "lighting"]
   }
   // Add more products as needed
 ];
