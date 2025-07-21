@@ -56,6 +56,72 @@ const PRODUCTS = [
       "Temperature control"
     ],
     tags: ["new", "premium"]
+  },
+     {
+    id: "smart-air-fryer-01",
+    title: "Smart Air Fryer",
+    description: "A smart and innovative smart air fryer designed for modern kitchens.",
+    images: ["assets/smart_air_fryer1.jpg"],
+    priceINR: 2785,
+    priceUSD: null,
+    affiliate: {
+      india: null,
+      us: null,
+      global: "https://amazon.com/dp/GLOBPROD1"
+    },
+    availability: "us",
+    category: "budget",
+    features: [
+      "Smart control system",
+      "Energy efficient",
+      "Compact design",
+      "App integration"
+    ],
+    tags: ["trending", "editors"]
+  },
+  {
+    id: "digital-rice-cooker-02",
+    title: "Digital Rice Cooker",
+    description: "A smart and innovative digital rice cooker designed for modern kitchens.",
+    images: ["assets/digital_rice_cooker2.jpg"],
+    priceINR: null,
+    priceUSD: null,
+    affiliate: {
+      india: "https://amazon.in/dp/INPROD2",
+      us: null,
+      global: "https://amazon.com/dp/GLOBPROD2"
+    },
+    availability: "global",
+    category: "premium",
+    features: [
+      "Smart control system",
+      "Energy efficient",
+      "Compact design",
+      "App integration"
+    ],
+    tags: ["new", "premium"]
+  },
+  {
+    id: "portable-smoothie-blender-03",
+    title: "Portable Smoothie Blender",
+    description: "A smart and innovative portable smoothie blender designed for modern kitchens.",
+    images: ["assets/portable_smoothie_blender3.jpg"],
+    priceINR: null,
+    priceUSD: 61,
+    affiliate: {
+      india: null,
+      us: null,
+      global: null
+    },
+    availability: "global",
+    category: "midrange",
+    features: [
+      "Smart control system",
+      "Energy efficient",
+      "Compact design",
+      "App integration"
+    ],
+    tags: ["bestseller"]
   }
   // Add more products as needed
 ];
