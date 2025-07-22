@@ -13,11 +13,10 @@
 .nav-logo {
   height: 50px;
   width: 100px;
-  
-}
+  }
 
 .logo {
-  background-img: url("images/logo.png");
+  background-img: url("images/logo.png">);
   height: 50px;
   width: 100%;
   background-size: cover;
@@ -29,4 +28,4 @@
   border: 2px solid white;
 }
   
-<img src="images/logo.png">
+
