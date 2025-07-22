@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-:root {
-  --primary: #191919;
-  --accent: #4caf50;
-  --background: #f9f9f9;
-  --card-bg: #fff;
-  --text: #222;
-  --border-radius: 14px;
-  --shadow: 0 4px 16px rgba(0,0,0,0.07);
-  --transition: 0.2s;
-}
-
-body {
+* {
   margin: 0;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
   background: var(--background);
