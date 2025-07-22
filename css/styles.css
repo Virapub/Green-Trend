@@ -17,7 +17,7 @@
 
 .logo {
   background-image: url("../images/logo.png"); /* ../ se ek level up jayega */
-  background-size: cover;
+  background-size: scale-down;
   height: 50px;
   width: 100%;
 }
