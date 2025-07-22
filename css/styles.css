@@ -16,7 +16,7 @@
   }
 
 .logo {
-  background-image: "images/logo.png";
+  background-image: url="images/logo.png";
   background-size: scale-down;
   height: 50px;
   width: 100%;
