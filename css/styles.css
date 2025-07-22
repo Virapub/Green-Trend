@@ -1,8 +1,7 @@
 * {
   margin: 0;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  background: var(--background);
-  color: var(--text);
+  border: border-box;
 }
 
 .navbar {
