@@ -16,7 +16,6 @@
 }
 
 .logo {
-  background-image: url("images/1752707809691.png");
   height: 50px;
   width: 100%;
   background-size: cover;
@@ -28,3 +27,4 @@
   border: 2px solid white;
 }
   
+<img src="images/logo.png">
