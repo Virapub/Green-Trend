@@ -23,8 +23,16 @@ header {
   padding: 0.7rem 4vw;
 }
 
-.logo img {
-  height: 40px;
+.nav-logo {
+  height: 50px;
+  width: 100px;
+}
+
+.logo {
+  background-image: url("images/LOGO.png);
+  height: 50px;
+  width: 100%;
+  background-size: cover;
   vertical-align: middle;
 }
 
