@@ -19,7 +19,7 @@
   background-img: url("images/logo.png">);
   height: 50px;
   width: 100%;
-  background-size: cover;
+  background-size: scale-down;
 }
 . border {
   border: 2px solid background;
