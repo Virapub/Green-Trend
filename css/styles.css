@@ -21,3 +21,10 @@
   width: 100%;
   background-size: cover;
 }
+. border {
+  border: 2px solid background;
+}
+.border: hover{
+  border: 2px solid white;
+}
+  
