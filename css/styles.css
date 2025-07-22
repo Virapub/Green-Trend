@@ -13,12 +13,14 @@
 .nav-logo {
   height: 50px;
   width: 100px;
+  background-size: cover;
 }
 
 .logo {
+  background-img: url("images/logo.png");
   height: 50px;
   width: 100%;
-  background-size: cover;
+  
 }
 . border {
   border: 2px solid background;
