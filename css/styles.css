@@ -16,9 +16,9 @@
   }
 
 .logo {
+  background-size: content;
   height: 50px;
   width: 100%;
-  object-fit: content;
   }
 . border {
   border: 2px solid transparent;
