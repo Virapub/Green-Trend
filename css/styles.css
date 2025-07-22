@@ -17,7 +17,7 @@
 
 .logo {
   background-image: images/logo.png;
-  background-size: cover;
+  background-size: scale-down;
   height: 50px;
   width: 100%;
   }
