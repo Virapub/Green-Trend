@@ -13,19 +13,19 @@
 .nav-logo {
   height: 50px;
   width: 100px;
-  }
+}
 
 .logo {
   background-image: url("images/logo.png");
   background-size: cover;
   height: 50px;
   width: 100%;
-  }
-. border {
+}
+
+.border {
   border: 2px solid transparent;
 }
-.border: hover{
+
+.border:hover {
   border: 2px solid white;
 }
-  
-
