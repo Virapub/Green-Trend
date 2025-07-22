@@ -16,7 +16,7 @@
   }
 
 .logo {
-  background-img: url("images/logo.png");
+  background-img: url("<img src="images/logo.png">");
   background-size: cover;
   height: 50px;
   width: 100%;
