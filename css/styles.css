@@ -11,14 +11,13 @@
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 20px;
 }
 
 .nav-logo {
   height: 50px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1.2px;
 }
 
 .logo {
