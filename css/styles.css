@@ -19,10 +19,12 @@
 }
 
 .logo{
-  background-image: url("﻿images/logon.png");
-  background-size: scale-down;
+   background-image: url("../images/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 50px;
-  width: 100%;
+  width: 100px;
 }
 
 .border {
