@@ -10,6 +10,7 @@
   color: white;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .nav-logo {
@@ -56,7 +57,7 @@
   background-color: #f3f3f3;
   width: 50px;
   text-align: center;
-  border-top-left-radius: radius: 4px;
+  border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   border: none;
 }
@@ -72,12 +73,37 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  background-color: rgb(255, 174, 0);
+  background-color: #febd68;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #0f1111;
+}
+.nav-search:hover {
+  border: 2px solid orange;
+}
+/**  panel **/
+.panel {
+  height: 40px;
+  background-color: #222f3d;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
+.panel-ops p {
+  display: inline;
+  color: white;
+  font-size: 0.85rem;
+  margin-left: 15px;
+}
 
+.panel-ops {
+  width: 70%;
+}
 
-
-
-
+.panel-deals {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
 
