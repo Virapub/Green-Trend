@@ -1,8 +1,7 @@
 * {
   margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  box-sizing: border-box;
+  font-family: Arial;
+  border: border-box;
 }
 
 .navbar {
@@ -14,41 +13,31 @@
 }
 
 .nav-logo {
-  height:50px;  
-  width: 100px;  
-}
-
-.logo {
-  background-image: url("../images/logo.png");
-  background-size: cover;
-  background-position: center;
   height: 50px;
   width: 100px;
 }
 
-.site-name {
-  font-weight: bold;
-  font-size: 1.2rem;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.name {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.tagline {
-  font-size: 0.8rem;
-  color: #cccccc;
+.logo{
+  background-image: url("﻿../images/logo.png");
+  background-size: scale-down;
+  height: 50px;
+  width: 100%;
 }
 
 .border {
-  border: 2px solid transparent;
-  padding: 5px;
+  border: 1.25px solid transparent;
 }
 
 .border:hover {
-  border: 2px solid white;
-  border-radius: 3px;
+  border: 1.25px solid white;
+}
+
+/** box 2 **/
+.name-first {
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+.name-second {
+  font-size: 0.5rem;
 }
