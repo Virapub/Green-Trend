@@ -27,6 +27,8 @@
 }
 
 .site-name {
+  font-weight: bold;
+  font-size: 1.2rem;
   flex-direction: column;
   justify-content: center;
 }
