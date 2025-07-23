@@ -1,4 +1,4 @@
-const PRODUCTS = [
+const products = [
   {
     id: "smart-mug-01",
     title: "Self-Heating Smart Mug",
