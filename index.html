@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Smartrend - Smart Gadgets Store</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartlyNow - Smart Gadgets Store</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="main.js"></script>
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <div class="nav-logo border">
-                <div class="logo"></div>
-            </div>  
-            <div class="site-name border">
-                <p class="name-first">GreenTrend</p>
-                <div class="tag-name">
-                    <p class="name-second">Smart Gadget Store</p>
-                </div>
-                </div>
-                <div class="nav-search border">
-                    <select>
-                        <option>All</option>
-                    </select class="search-select">
-                    <input placeholder="search products" class="search-input">
-                    <div class="search-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-            </div>
-        </div>
-            <div class="panel">
-                        <div class="panel-all">
-                            <i class="fa-solid fa-bars"></i>
-                            All
-                        </div>
-                <div class="panel-ops">
-                    <p>Today's Deals</p>
-                    <p>Budget Friendly</p>
-                    <p>Mid-range Picks</p>
-                    <p>Premium</p>
-                </div>
-                <div class="panel-deals">
-                    Festival Deals
-                </div>
-                    </div>
-    </header>
-  
-  
+  <header>
+    <div class="navbar">
+      <div class="nav-logo">
+        <div class="logo"></div>
+      </div>
+      <div class="site-name">
+        <p class="name-first">SmartlyNow</p>
+        <p class="name-second">Smart Gadgets Store</p>
+      </div>
+      <div class="nav-search">
+        <input placeholder="Search products..." class="search-input" id="search-input">
+        <div class="search-icon" id="search-icon">🔍</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-all">☰ All</div>
+      <div class="panel-ops">
+        <p>Budget</p>
+        <p>Mid-range</p>
+        <p>Premium</p>
+      </div>
+      <div class="panel-deals">Festival Deals</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="product-grid" class="product-grid"></section>
+  </main>
 </body>
 </html>
