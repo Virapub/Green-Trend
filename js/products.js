@@ -1,45 +1,103 @@
-// Get product slug from URL
-const params = new URLSearchParams(window.location.search);
-const productId = params.get('id');
-
-// Get product by ID
-const selectedProduct = products.find(p => p.id === productId);
-
-// Get current user country
-const userCountry = localStorage.getItem('userCountry') || 'IN';
-const currencySymbol = { IN: '₹', US: '$' };
-
-// Format price
-function formatPrice(price, country) {
-  const rate = country === 'US' ? 0.012 : 1;
-  return `${currencySymbol[country]}${Math.round(price * rate)}`;
-}
-
-// Render product details
-function renderProductDetails(product) {
-  const container = document.getElementById('single-product');
-
-  if (!product || !product.availability.includes(userCountry)) {
-    container.innerHTML = `<p>Sorry, this product is not available in your region.</p>`;
-    return;
+const products = [
+  {
+    id: "smart-mug-01",
+    title: "Self-Heating Smart Mug",
+    description: "Keeps your tea or coffee warm with intelligent temperature control.",
+    images: ["images/products/smart-mug.jpg"],
+    priceUSD: 49.99,
+    originalPrice: 59.99,
+    category: "midrange",
+    tags: ["trending", "featured", "gift"],
+    features: ["Auto temperature", "USB charging", "Leak-proof lid"],
+    rating: 4.5,
+    reviews: 128
+  },
+  {
+    id: "kitchen-scale-02",
+    title: "Smart Kitchen Scale",
+    description: "Accurate food scale with app sync for smart recipes and calorie tracking.",
+    images: ["images/products/kitchen-scale.jpg"],
+    priceUSD: 24.99,
+    category: "budget",
+    tags: ["trending", "budget"],
+    features: ["Bluetooth sync", "Precise measurement", "Compact design"],
+    rating: 4.2,
+    reviews: 86
+  },
+  {
+    id: "airfryer-03",
+    title: "Touch Control Air Fryer",
+    description: "Oil-free frying with 7 pre-sets and touch panel — perfect for festive snacks!",
+    images: ["images/products/air-fryer.jpg"],
+    priceUSD: 79.00,
+    originalPrice: 99.99,
+    category: "premium",
+    tags: ["festival", "premium", "featured"],
+    features: ["7 cooking modes", "Smart timer", "Compact & powerful"],
+    rating: 4.7,
+    reviews: 215
+  },
+  {
+    id: "robot-vacuum-04",
+    title: "Smart Robot Vacuum",
+    description: "WiFi connected vacuum with app control and automatic charging.",
+    images: ["images/products/robot-vacuum.jpg"],
+    priceUSD: 199.99,
+    originalPrice: 249.99,
+    category: "premium",
+    tags: ["featured", "new"],
+    features: ["App control", "Auto recharge", "Smart mapping"],
+    rating: 4.8,
+    reviews: 342
+  },
+  {
+    id: "sleep-headphones-05",
+    title: "Sleep Headphones Headband",
+    description: "Ultra-thin headphones in a comfortable sleep mask.",
+    images: ["images/products/sleep-headphones.jpg"],
+    priceUSD: 29.99,
+    category: "midrange",
+    tags: ["trending"],
+    features: ["Bluetooth 5.0", "Washable", "10hr battery"],
+    rating: 4.3,
+    reviews: 174
+  },
+  {
+    id: "smart-plug-06",
+    title: "WiFi Smart Plug",
+    description: "Control appliances remotely with your smartphone.",
+    images: ["images/products/smart-plug.jpg"],
+    priceUSD: 19.99,
+    originalPrice: 24.99,
+    category: "budget",
+    tags: ["featured"],
+    features: ["Voice control", "Energy monitoring", "Timer function"],
+    rating: 4.4,
+    reviews: 298
+  },
+  {
+    id: "posture-corrector-07",
+    title: "Smart Posture Corrector",
+    description: "Wearable device that vibrates when you slouch.",
+    images: ["images/products/posture-corrector.jpg"],
+    priceUSD: 39.99,
+    category: "midrange",
+    tags: ["new", "health"],
+    features: ["Adjustable", "Rechargeable", "App tracking"],
+    rating: 4.1,
+    reviews: 63
+  },
+  {
+    id: "herb-grower-08",
+    title: "Smart Indoor Herb Grower",
+    description: "Automated system for growing herbs indoors year-round.",
+    images: ["images/products/herb-grower.jpg"],
+    priceUSD: 89.99,
+    originalPrice: 119.99,
+    category: "premium",
+    tags: ["featured"],
+    features: ["Auto lighting", "Water reminder", "Compact design"],
+    rating: 4.6,
+    reviews: 127
   }
-
-  const link = product.link[userCountry] || '#';
-
-  container.innerHTML = `
-    <div class="product-detail">
-      <img src="${product.image}" alt="${product.name}" />
-      <div class="product-info">
-        <h2>${product.name}</h2>
-        <p class="price">${formatPrice(product.price, userCountry)}</p>
-        <p class="desc">${product.description || 'No description available.'}</p>
-        <a href="${link}" target="_blank" class="buy-btn">Buy on Amazon</a>
-      </div>
-    </div>
-  `;
-}
-
-// Call render
-document.addEventListener('DOMContentLoaded', () => {
-  renderProductDetails(selectedProduct);
-});
+];
