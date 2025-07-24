@@ -4,11 +4,16 @@ const AFFILIATE_PRODUCTS = [
     id: "smart-mug-01",
     title: "Self-Heating Smart Mug",
     description: "Keeps your tea or coffee warm with intelligent temperature control. Features auto shut-off and temperature presets.",
-    images: ["https://m.media-amazon.com/images/I/71wvo2te8GL._AC_SL1500_.jpg"],
+    images: ["https://m.media-amazon.com/images/I/71SnYmRZ3aL._SL1500_.jpg"],
     priceUSD: 49.99,
     originalPrice: 59.99,
-    affiliate: "https://amzn.to/4f4oaEF",
-    features: ["Auto temperature control", "USB charging", "Leak-proof lid", "Battery indicator"],
+    affiliate: "https://amzn.to/3xY4JtK",
+    features: [
+      "Auto temperature control",
+      "USB charging",
+      "Leak-proof lid",
+      "Battery indicator"
+    ],
     rating: 4.5,
     reviews: 128,
     category: "kitchen"
@@ -17,11 +22,16 @@ const AFFILIATE_PRODUCTS = [
     id: "airfryer-03",
     title: "Touch Control Air Fryer",
     description: "Oil-free frying with 7 pre-sets and touch panel. Healthy cooking made easy with this compact appliance.",
-    images: ["https://m.media-amazon.com/images/I/71Xk5Z4n0QL._SL1500_.jpg"],
+    images: ["https://m.edia-amazon.com/images/I/71Xk5Z4n0QL._SL1500_.jpg"],
     priceUSD: 79.00,
     originalPrice: 99.99,
     affiliate: "https://amzn.to/3xY8HjP",
-    features: ["7 cooking modes", "Digital touch control", "60-minute timer", "Non-stick basket"],
+    features: [
+      "7 cooking modes",
+      "Digital touch control",
+      "60-minute timer",
+      "Non-stick basket"
+    ],
     rating: 4.7,
     reviews: 342,
     category: "kitchen"
@@ -30,48 +40,64 @@ const AFFILIATE_PRODUCTS = [
 
 // Global variables
 let currentCurrency = 'USD';
-let exchangeRate = 1;
-
-window.onload = async function () {
-  // Get user's currency
-  currentCurrency = await getUserCurrencyCode();
-  exchangeRate = await fetchExchangeRate('USD', currentCurrency);
-  
-  // Load products on homepage
-  if (document.getElementById('product-grid')) {
-    displayProductCards(AFFILIATE_PRODUCTS);
-  }
-  
-  // Load product detail if on product page
-  if (window.location.pathname.includes('product-detail.html')) {
-    loadProductDetail();
-  }
+let exchangeRates = {
+  USD: 1,
+  EUR: 0.85,
+  INR: 75.0,
+  GBP: 0.75
 };
 
-// Display product cards on homepage
-function displayProductCards(products) {
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+  // Set up currency selector
+  const currencySelect = document.getElementById('currency-select');
+  if (currencySelect) {
+    currencySelect.value = currentCurrency;
+    currencySelect.addEventListener('change', function() {
+      currentCurrency = this.value;
+      if (window.location.pathname.includes('product.html')) {
+        loadProductDetail();
+      } else {
+        loadProductGrid();
+      }
+    });
+  }
+
+  // Check if we're on the product detail page
+  if (window.location.pathname.includes('product.html')) {
+    loadProductDetail();
+  } else {
+    loadProductGrid();
+  }
+});
+
+// Load product grid on homepage
+function loadProductGrid() {
   const productGrid = document.getElementById('product-grid');
+  if (!productGrid) return;
+
   productGrid.innerHTML = '';
 
-  products.forEach(product => {
-    const price = (product.priceUSD * exchangeRate).toFixed(2);
-    const originalPrice = product.originalPrice ? (product.originalPrice * exchangeRate).toFixed(2) : null;
+  AFFILIATE_PRODUCTS.forEach(product => {
+    const price = convertCurrency(product.priceUSD, currentCurrency);
+    const originalPrice = product.originalPrice ? convertCurrency(product.originalPrice, currentCurrency) : null;
     const currencySymbol = getCurrencySymbol(currentCurrency);
 
-    const card = document.createElement('div');
-    card.classList.add('product-card');
-    card.innerHTML = `
-      <img src="${product.images[0]}" alt="${product.title}" class="product-image" />
-      <h3>${product.title}</h3>
-      <p class="product-description">${product.description.substring(0, 100)}...</p>
-      <div class="product-price">
-        ${currencySymbol}${price}
-        ${originalPrice ? `<span class="original-price">${currencySymbol}${originalPrice}</span>` : ''}
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.innerHTML = `
+      <img src="${product.images[0]}" alt="${product.title}" class="product-image">
+      <div class="product-info">
+        <h3 class="product-title">${product.title}</h3>
+        <div class="product-price">
+          ${currencySymbol}${price.toFixed(2)}
+          ${originalPrice ? `<span class="original-price">${currencySymbol}${originalPrice.toFixed(2)}</span>` : ''}
+        </div>
+        <div class="product-rating">${generateStarRating(product.rating)} (${product.reviews})</div>
+        <a href="product.html?id=${product.id}" class="view-details-btn">View Details</a>
       </div>
-      <div class="product-rating">${generateStarRating(product.rating)} (${product.reviews})</div>
-      <a href="product-detail.html?id=${product.id}" class="view-details-btn">View Details</a>
     `;
-    productGrid.appendChild(card);
+    productGrid.appendChild(productCard);
   });
 }
 
@@ -79,68 +105,82 @@ function displayProductCards(products) {
 function loadProductDetail() {
   const productId = new URLSearchParams(window.location.search).get('id');
   const product = AFFILIATE_PRODUCTS.find(p => p.id === productId);
-  
-  if (product && document.getElementById('product-detail')) {
-    const price = (product.priceUSD * exchangeRate).toFixed(2);
-    const originalPrice = product.originalPrice ? (product.originalPrice * exchangeRate).toFixed(2) : null;
-    const currencySymbol = getCurrencySymbol(currentCurrency);
-    
-    document.getElementById('product-detail').innerHTML = `
-      <div class="product-detail-container">
-        <div class="product-images">
-          <img src="${product.images[0]}" alt="${product.title}" class="main-image" />
-        </div>
-        <div class="product-info">
-          <h1>${product.title}</h1>
-          <div class="product-rating">
-            ${generateStarRating(product.rating)} (${product.reviews} reviews)
-          </div>
-          <div class="product-price">
-            <span class="current-price">${currencySymbol}${price}</span>
-            ${originalPrice ? `<span class="original-price">${currencySymbol}${originalPrice}</span>` : ''}
-          </div>
-          <p class="product-description">${product.description}</p>
-          
-          <div class="product-features">
-            <h3>Key Features:</h3>
-            <ul>
-              ${product.features.map(f => `<li>${f}</li>`).join('')}
-            </ul>
-          </div>
-          
-          <a href="${product.affiliate}" target="_blank" class="buy-now-btn">Buy Now on Amazon</a>
-        </div>
+  const productDetail = document.getElementById('product-detail');
+
+  if (!product || !productDetail) {
+    productDetail.innerHTML = '<p>Product not found. <a href="index.html">Return to homepage</a></p>';
+    return;
+  }
+
+  const price = convertCurrency(product.priceUSD, currentCurrency);
+  const originalPrice = product.originalPrice ? convertCurrency(product.originalPrice, currentCurrency) : null;
+  const currencySymbol = getCurrencySymbol(currentCurrency);
+
+  productDetail.innerHTML = `
+    <div class="product-detail-container">
+      <div class="product-images">
+        <img src="${product.images[0]}" alt="${product.title}" class="main-image">
       </div>
-    `;
-  }
+      <div class="product-details">
+        <h1>${product.title}</h1>
+        <div class="product-rating">${generateStarRating(product.rating)} (${product.reviews} reviews)</div>
+        <div class="current-price">${currencySymbol}${price.toFixed(2)}
+          ${originalPrice ? `<span class="original-price">${currencySymbol}${originalPrice.toFixed(2)}</span>` : ''}
+        </div>
+        <p>${product.description}</p>
+        
+        <div class="product-features">
+          <h3>Key Features:</h3>
+          <ul>
+            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <a href="${product.affiliate}" target="_blank" class="buy-now-btn">Buy Now on Amazon</a>
+        <a href="index.html" class="back-btn">← Back to Products</a>
+      </div>
+    </div>
+  `;
 }
 
-/* Helper functions (keep these from your original code) */
-function getCurrencySymbol(code) {
-  const symbols = { USD: "$", INR: "₹", EUR: "€", GBP: "£" };
-  return symbols[code] || code + " ";
+/* Helper functions */
+function convertCurrency(amount, toCurrency) {
+  return amount * exchangeRates[toCurrency];
 }
 
-async function getUserCurrencyCode() {
-  try {
-    const res = await fetch("https://ipapi.co/json/");
-    const data = await res.json();
-    return data.currency || "USD";
-  } catch {
-    return "USD";
-  }
-}
-
-async function fetchExchangeRate(from, to) {
-  try {
-    const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
-    const data = await res.json();
-    return data.rates[to] || 1;
-  } catch {
-    return 1;
-  }
+function getCurrencySymbol(currency) {
+  const symbols = {
+    USD: "$",
+    EUR: "€",
+    INR: "₹",
+    GBP: "£"
+  };
+  return symbols[currency] || currency;
 }
 
 function generateStarRating(rating) {
-  return '★'.repeat(Math.floor(rating)) + '☆'.repeat(5 - Math.floor(rating));
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
+  
+  return '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
 }
+
+// Fetch real exchange rates (optional)
+async function fetchExchangeRates() {
+  try {
+    const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+    const data = await response.json();
+    exchangeRates = {
+      USD: 1,
+      EUR: data.rates.EUR || 0.85,
+      INR: data.rates.INR || 75.0,
+      GBP: data.rates.GBP || 0.75
+    };
+  } catch (error) {
+    console.log("Using default exchange rates");
+  }
+}
+
+// Initialize with real exchange rates
+fetchExchangeRates();
