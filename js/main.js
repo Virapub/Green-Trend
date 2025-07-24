@@ -7,7 +7,7 @@ const AFFILIATE_PRODUCTS = [
     images: ["https://m.media-amazon.com/images/I/71SnYmRZ3aL._SL1500_.jpg"],
     priceUSD: 49.99,
     originalPrice: 59.99,
-    affiliate: "https://amzn.to/3xY4JtK",
+    affiliate: "https://amzn.to/4f4oaEF",
     features: ["Auto temperature control", "USB charging", "Leak-proof lid", "Battery indicator"],
     rating: 4.5,
     reviews: 128,
