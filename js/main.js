@@ -1,39 +1,126 @@
-// Initialize currency and products
+// Product data with affiliate links
+const AFFILIATE_PRODUCTS = [
+  {
+    id: "smart-mug-01",
+    title: "Self-Heating Smart Mug",
+    description: "Keeps your tea or coffee warm with intelligent temperature control. Features auto shut-off and temperature presets.",
+    images: ["https://m.media-amazon.com/images/I/71SnYmRZ3aL._SL1500_.jpg"],
+    priceUSD: 49.99,
+    originalPrice: 59.99,
+    affiliate: "https://amzn.to/3xY4JtK",
+    features: ["Auto temperature control", "USB charging", "Leak-proof lid", "Battery indicator"],
+    rating: 4.5,
+    reviews: 128,
+    category: "kitchen"
+  },
+  {
+    id: "airfryer-03",
+    title: "Touch Control Air Fryer",
+    description: "Oil-free frying with 7 pre-sets and touch panel. Healthy cooking made easy with this compact appliance.",
+    images: ["https://m.media-amazon.com/images/I/71Xk5Z4n0QL._SL1500_.jpg"],
+    priceUSD: 79.00,
+    originalPrice: 99.99,
+    affiliate: "https://amzn.to/3xY8HjP",
+    features: ["7 cooking modes", "Digital touch control", "60-minute timer", "Non-stick basket"],
+    rating: 4.7,
+    reviews: 342,
+    category: "kitchen"
+  }
+];
+
+// Global variables
 let currentCurrency = 'USD';
 let exchangeRate = 1;
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// DOM Content Loaded
-document.addEventListener('DOMContentLoaded', async function() {
-  // Set currency
+window.onload = async function () {
+  // Get user's currency
   currentCurrency = await getUserCurrencyCode();
   exchangeRate = await fetchExchangeRate('USD', currentCurrency);
   
-  // Load featured products
-  loadFeaturedProducts();
+  // Load products on homepage
+  if (document.getElementById('product-grid')) {
+    displayProductCards(AFFILIATE_PRODUCTS);
+  }
   
-  // Load trending products
-  loadTrendingProducts();
-  
-  // Update cart count
-  updateCartCount();
-  
-  // Search functionality
-  document.getElementById('search-btn').addEventListener('click', searchProducts);
-  document.getElementById('search-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') searchProducts();
-  });
-  
-  // Category filtering
-  document.querySelectorAll('.category-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      filterProducts(this.textContent.trim());
-    });
-  });
-});
+  // Load product detail if on product page
+  if (window.location.pathname.includes('product-detail.html')) {
+    loadProductDetail();
+  }
+};
 
-// Get user's currency
+// Display product cards on homepage
+function displayProductCards(products) {
+  const productGrid = document.getElementById('product-grid');
+  productGrid.innerHTML = '';
+
+  products.forEach(product => {
+    const price = (product.priceUSD * exchangeRate).toFixed(2);
+    const originalPrice = product.originalPrice ? (product.originalPrice * exchangeRate).toFixed(2) : null;
+    const currencySymbol = getCurrencySymbol(currentCurrency);
+
+    const card = document.createElement('div');
+    card.classList.add('product-card');
+    card.innerHTML = `
+      <img src="${product.images[0]}" alt="${product.title}" class="product-image" />
+      <h3>${product.title}</h3>
+      <p class="product-description">${product.description.substring(0, 100)}...</p>
+      <div class="product-price">
+        ${currencySymbol}${price}
+        ${originalPrice ? `<span class="original-price">${currencySymbol}${originalPrice}</span>` : ''}
+      </div>
+      <div class="product-rating">${generateStarRating(product.rating)} (${product.reviews})</div>
+      <a href="product-detail.html?id=${product.id}" class="view-details-btn">View Details</a>
+    `;
+    productGrid.appendChild(card);
+  });
+}
+
+// Load product detail page
+function loadProductDetail() {
+  const productId = new URLSearchParams(window.location.search).get('id');
+  const product = AFFILIATE_PRODUCTS.find(p => p.id === productId);
+  
+  if (product && document.getElementById('product-detail')) {
+    const price = (product.priceUSD * exchangeRate).toFixed(2);
+    const originalPrice = product.originalPrice ? (product.originalPrice * exchangeRate).toFixed(2) : null;
+    const currencySymbol = getCurrencySymbol(currentCurrency);
+    
+    document.getElementById('product-detail').innerHTML = `
+      <div class="product-detail-container">
+        <div class="product-images">
+          <img src="${product.images[0]}" alt="${product.title}" class="main-image" />
+        </div>
+        <div class="product-info">
+          <h1>${product.title}</h1>
+          <div class="product-rating">
+            ${generateStarRating(product.rating)} (${product.reviews} reviews)
+          </div>
+          <div class="product-price">
+            <span class="current-price">${currencySymbol}${price}</span>
+            ${originalPrice ? `<span class="original-price">${currencySymbol}${originalPrice}</span>` : ''}
+          </div>
+          <p class="product-description">${product.description}</p>
+          
+          <div class="product-features">
+            <h3>Key Features:</h3>
+            <ul>
+              ${product.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+          </div>
+          
+          <a href="${product.affiliate}" target="_blank" class="buy-now-btn">Buy Now on Amazon</a>
+        </div>
+      </div>
+    `;
+  }
+}
+
+/* Helper functions (keep these from your original code) */
+function getCurrencySymbol(code) {
+  const symbols = { USD: "$", INR: "₹", EUR: "€", GBP: "£" };
+  return symbols[code] || code + " ";
+}
+
 async function getUserCurrencyCode() {
   try {
     const res = await fetch("https://ipapi.co/json/");
@@ -44,10 +131,7 @@ async function getUserCurrencyCode() {
   }
 }
 
-// Fetch exchange rates
 async function fetchExchangeRate(from, to) {
-  if (from === to) return 1;
-  
   try {
     const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
     const data = await res.json();
@@ -57,195 +141,6 @@ async function fetchExchangeRate(from, to) {
   }
 }
 
-// Load featured products
-function loadFeaturedProducts() {
-  const featuredProducts = products.filter(product => product.tags.includes('featured') || product.category === 'premium');
-  displayProducts(featuredProducts, 'featured-grid');
-}
-
-// Load trending products
-function loadTrendingProducts() {
-  const trendingProducts = products.filter(product => product.tags.includes('trending'));
-  displayProducts(trendingProducts, 'trending-grid');
-}
-
-// Display products
-function displayProducts(productsToDisplay, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  
-  container.innerHTML = '';
-  
-  productsToDisplay.forEach(product => {
-    const price = (product.priceUSD * exchangeRate).toFixed(2);
-    const currencySymbol = getCurrencySymbol(currentCurrency);
-    
-    const productCard = document.createElement('div');
-    productCard.className = 'product-card';
-    
-    // Add badge if product is on sale or new
-    let badge = '';
-    if (product.tags.includes('new')) {
-      badge = '<span class="product-badge">New</span>';
-    } else if (product.tags.includes('sale')) {
-      badge = '<span class="product-badge" style="background-color: var(--success)">Sale</span>';
-    }
-    
-    productCard.innerHTML = `
-      ${badge}
-      <a href="product-detail.html?id=${product.id}">
-        <img src="${product.images[0]}" alt="${product.title}" class="product-image">
-      </a>
-      <div class="product-info">
-        <a href="product-detail.html?id=${product.id}" class="product-title">${product.title}</a>
-        <div class="product-price">
-          ${currencySymbol}${price}
-          ${product.originalPrice ? `<span class="original-price">${currencySymbol}${(product.originalPrice * exchangeRate).toFixed(2)}</span>` : ''}
-        </div>
-        <div class="product-rating">
-          ${generateStarRating(product.rating || 4)} (${product.reviews || '0'})
-        </div>
-        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-      </div>
-    `;
-    
-    container.appendChild(productCard);
-  });
-  
-  // Add event listeners to all "Add to Cart" buttons
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function() {
-      const productId = this.getAttribute('data-id');
-      addToCart(productId);
-    });
-  });
-}
-
-// Generate star rating
 function generateStarRating(rating) {
-  const fullStars = Math.floor(rating);
-  const halfStar = rating % 1 >= 0.5 ? 1 : 0;
-  const emptyStars = 5 - fullStars - halfStar;
-  
-  return '★'.repeat(fullStars) + 
-         (halfStar ? '½' : '') + 
-         '☆'.repeat(emptyStars);
-}
-
-// Get currency symbol
-function getCurrencySymbol(code) {
-  const symbols = {
-    USD: "$", INR: "₹", EUR: "€", GBP: "£", 
-    AUD: "A$", CAD: "C$", JPY: "¥", CNY: "¥"
-  };
-  return symbols[code] || code + " ";
-}
-
-// Add to cart
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  
-  if (product) {
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        title: product.title,
-        price: product.priceUSD,
-        image: product.images[0],
-        quantity: 1
-      });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    
-    // Show notification
-    showNotification(`${product.title} added to cart!`);
-  }
-}
-
-// Update cart count
-function updateCartCount() {
-  const count = cart.reduce((total, item) => total + item.quantity, 0);
-  document.querySelector('.cart-count').textContent = count;
-}
-
-// Show notification
-function showNotification(message) {
-  const notification = document.createElement('div');
-  notification.className = 'notification';
-  notification.textContent = message;
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.classList.add('show');
-  }, 10);
-  
-  setTimeout(() => {
-    notification.classList.remove('show');
-    setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 300);
-  }, 3000);
-}
-
-// Search products
-function searchProducts() {
-  const searchTerm = document.getElementById('search-input').value.toLowerCase();
-  if (!searchTerm) return;
-  
-  const results = products.filter(product => 
-    product.title.toLowerCase().includes(searchTerm) || 
-    product.description.toLowerCase().includes(searchTerm) ||
-    product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-  );
-  
-  if (results.length > 0) {
-    displayProducts(results, 'featured-grid');
-    document.getElementById('featured-products').scrollIntoView({
-      behavior: 'smooth'
-    });
-  } else {
-    document.getElementById('featured-grid').innerHTML = `
-      <div class="no-results">
-        <p>No products found for "${searchTerm}"</p>
-        <button class="btn btn-primary" onclick="loadFeaturedProducts()">Show All Products</button>
-      </div>
-    `;
-  }
-}
-
-// Filter products by category
-function filterProducts(category) {
-  let filteredProducts = [];
-  
-  if (category === 'All Products') {
-    filteredProducts = products;
-  } else if (category === 'Budget') {
-    filteredProducts = products.filter(p => p.category === 'budget');
-  } else if (category === 'Mid-range') {
-    filteredProducts = products.filter(p => p.category === 'midrange');
-  } else if (category === 'Premium') {
-    filteredProducts = products.filter(p => p.category === 'premium');
-  } else if (category === 'Festival Deals') {
-    filteredProducts = products.filter(p => p.tags.includes('festival'));
-  } else if (category === 'Trending') {
-    filteredProducts = products.filter(p => p.tags.includes('trending'));
-  } else if (category === 'New Arrivals') {
-    filteredProducts = products.filter(p => p.tags.includes('new'));
-  }
-  
-  displayProducts(filteredProducts, 'featured-grid');
-  
-  // Update active category
-  document.querySelectorAll('.category-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === category) {
-      link.classList.add('active');
-    }
-  });
+  return '★'.repeat(Math.floor(rating)) + '☆'.repeat(5 - Math.floor(rating));
 }
