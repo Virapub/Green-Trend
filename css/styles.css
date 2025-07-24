@@ -86,20 +86,15 @@ body {
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
+  height: 50px;
+  width: 100px;
 }
 
-.logo-img {
-  height: 40px;
-}
-
-.logo-text {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--primary);
+.logo{
+  background-image: url("﻿../images/logo.png");
+  background-size: scale-down;
+  height: 50px;
+  width: 100%;
 }
 
 .nav-search {
