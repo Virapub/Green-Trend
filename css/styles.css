@@ -97,6 +97,15 @@ body {
   width: 100%;
 }
 
+.name-first {
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+.name-second {
+  font-size: 0.5rem;
+}
+
 .nav-search {
   display: flex;
   width: 50%;
