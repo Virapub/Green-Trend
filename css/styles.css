@@ -25,13 +25,6 @@
   align-items: center;
   justify-content: space-evenly;
 }
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: var(--dark);
-  background-color: #ffffff;
-}
-
 .container {
   width: 90%;
   max-width: 1200px;
