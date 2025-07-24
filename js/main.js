@@ -4,7 +4,7 @@ const AFFILIATE_PRODUCTS = [
     id: "smart-mug-01",
     title: "Self-Heating Smart Mug",
     description: "Keeps your tea or coffee warm with intelligent temperature control. Features auto shut-off and temperature presets.",
-    images: ["https://m.media-amazon.com/images/I/71SnYmRZ3aL._SL1500_.jpg"],
+    images: ["https://m.media-amazon.com/images/I/71wvo2te8GL._AC_SL1500_.jpg"],
     priceUSD: 49.99,
     originalPrice: 59.99,
     affiliate: "https://amzn.to/4f4oaEF",
