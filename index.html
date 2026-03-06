@@ -1,135 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartlyNow - Premium Smart Gadgets</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern E-Commerce | Black Theme</title>
+    <style>
+        /* Base Reset & Variables */
+        :root {
+            --primary-color: #000000;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --border-color: #eeeeee;
+            --container-margin: 8%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Utility: Margin Container */
+        .margin-container {
+            margin-left: var(--container-margin);
+            margin-right: var(--container-margin);
+        }
+
+        /* Header & Navigation */
+        header {
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--text-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+
+        /* Full Width Dropdown Menu */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li { position: relative; }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 200px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: none;
+            padding: 10px 0;
+        }
+
+        .dropdown li a { color: black; }
+        .nav-links li:hover .dropdown { display: block; }
+
+        /* Hero Section (Full Width) */
+        .hero {
+            width: 100%;
+            height: 500px;
+            background: url('https://via.placeholder.com/1920x500/000000/FFFFFF?text=New+Collection+2026') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* Product Grids (3x1 Box Style) */
+        section { padding: 4rem 0; }
+        h2 { border-left: 5px solid var(--primary-color); padding-left: 15px; margin-bottom: 2rem; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            transition: 0.3s;
+        }
+
+        .product-card:hover { border-color: var(--primary-color); }
+        .product-card img { width: 100%; height: auto; margin-bottom: 1rem; }
+        .price { font-weight: bold; font-size: 1.2rem; margin: 0.5rem 0; }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-buy { background: var(--primary-color); color: white; }
+        .btn-cart { background: #f4f4f4; color: black; border: 1px solid black; }
+        button:hover { opacity: 0.8; }
+
+        /* Footer & Info Sections */
+        .info-section { background: #f9f9f9; padding: 3rem 0; }
+        footer {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            :root { --container-margin: 5%; }
+        }
+
+        @media (max-width: 600px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for mobile */
+        }
+    </style>
 </head>
 <body>
-  <header>
-  <!-- Navigation -->
-  <div class="navbar">
-            <div class="nav-logo border">
-                <div class="logo"></div>
-            </div>  
-            <div class="site-name border">
-                <p class="name-first">GreenTrend</p>
-                <div class="tag-name">
-                    <p class="name-second">Smart Gadget Store</p>
-                </div>
-                </div>
 
-      <div class="nav-search">
-        <select class="search-categories">
-          <option>All Categories</option>
-          <option>Smart Home</option>
-          <option>Kitchen Gadgets</option>
-          <option>Wearables</option>
-          <option>Health Tech</option>
-        </select>
-        <input type="text" placeholder="Search products..." class="search-input" id="search-input">
-        <button class="search-btn" id="search-btn">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
+    <header>
+        <div class="margin-container">
+            <nav>
+                <div class="logo">WARRIOR SHOP</div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li>
+                        <a href="#">Categories ▼</a>
+                        <ul class="dropdown">
+                            <li><a href="#trending">Trending Now</a></li>
+                            <li><a href="#new">New Arrivals</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-  <!-- Categories Navigation -->
-  <div class="categories-nav">
-    <div class="container">
-      <a href="#" class="category-link active">All Products</a>
-      <a href="#" class="category-link">Budget</a>
-      <a href="#" class="category-link">Mid-range</a>
-      <a href="#" class="category-link">Premium</a>
-      <a href="#" class="category-link">Festival Deals</a>
-      <a href="#" class="category-link">Trending</a>
-      <a href="#" class="category-link">New Arrivals</a>
-    </div>
-  </div>
-
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="hero-content">
-      <h1>Smart Living Starts Here</h1>
-      <p>Discover innovative gadgets that make life easier</p>
-      <a href="#featured-products" class="btn btn-primary">Shop Now</a>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <main class="container">
-    <!-- Featured Products -->
-    <section id="featured-products" class="product-section">
-      <h2 class="section-title">Featured Products</h2>
-      <div class="product-grid" id="featured-grid"></div>
-    </section>
-
-    <!-- Trending Products -->
-    <section class="product-section">
-      <h2 class="section-title">Trending Now</h2>
-      <div class="product-grid" id="trending-grid"></div>
-    </section>
-
-    <!-- Categories -->
-    <section class="categories-section">
-      <h2 class="section-title">Shop by Category</h2>
-      <div class="category-grid">
-        <a href="#" class="category-card">
-          <img src="images/smart-home.jpg" alt="Smart Home">
-          <h3>Smart Home</h3>
-        </a>
-        <a href="#" class="category-card">
-          <img src="images/kitchen.jpg" alt="Kitchen Gadgets">
-          <h3>Kitchen Gadgets</h3>
-        </a>
-        <a href="#" class="category-card">
-          <img src="images/wearables.jpg" alt="Wearables">
-          <h3>Wearables</h3>
-        </a>
-        <a href="#" class="category-card">
-          <img src="images/health.jpg" alt="Health Tech">
-          <h3>Health Tech</h3>
-        </a>
-      </div>
-    </section>
-    
-    <div class="product-grid" id="product-grid">
-      <!-- Products will be loaded here -->
-    </div>
-  
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>SmartlyNow</h4>
-          <p>Making smart technology accessible to everyone.</p>
+    <div class="hero">
+        <div>
+            <h1 style="font-size: 3rem;">UNLEASH THE WARRIOR</h1>
+            <p>Premium Quality. Minimalist Style.</p>
         </div>
-        <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="#">All Products</a></li>
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Trending</a></li>
-            <li><a href="#">Deals & Offers</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2023 SmartlyNow. All rights reserved.</p>
-      </div>
     </div>
-  </footer>
 
-  <!-- Scripts -->
-  
-  <script src="js/main.js"></script>
-  
+    <section id="trending">
+        <div class="margin-container">
+            <h2>Trending Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/eeeeee/000000?text=Trending+1" alt="Product">
+                    <h3>Warrior Pro Watch</h3>
+                    <p class="price">$199.00</p>
+                    <div class="btn-group">
+                        <button class="btn-buy">Buy Now</button>
+                        <button class="btn-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/eeeeee/000000?text=Trending+2" alt="Product">
+                    <h3>Stealth Backpack</h3>
+                    <p class="price">$85.00</p>
+                    <div class="btn-group">
+                        <button class="btn-buy">Buy Now</button>
+                        <button class="btn-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/eeeeee/000000?text=Trending+3" alt="Product">
+                    <h3>Carbon Sunglasses</h3>
+                    <p class="price">$120.00</p>
+                    <div class="btn-group">
+                        <button class="btn-buy">Buy Now</button>
+                        <button class="btn-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="new">
+        <div class="margin-container">
+            <h2>New Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/eeeeee/000000?text=New+1" alt="Product">
+                    <h3>Minimalist Wallet</h3>
+                    <p class="price">$45.00</p>
+                    <div class="btn-group">
+                        <button class="btn-buy">Buy Now</button>
+                        <button class="btn-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/eeeeee/000000?text=New+2" alt="Product">
+                    <h3>Steel Water Bottle</h3>
+                    <p class="price">$30.00</p>
+                    <div class="btn-group">
+                        <button class="btn-buy">Buy Now</button>
+                        <button class="btn-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/eeeeee/000000?text=New+3" alt="Product">
+                    <h3>Wireless Earbuds</h3>
+                    <p class="price">$150.00</p>
+                    <div class="btn-group">
+                        <button class="btn-buy">Buy Now</button>
+                        <button class="btn-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="info-section">
+        <div class="margin-container">
+            <h2>About Us</h2>
+            <p>Founded in 2026, Warrior Shop provides premium, high-performance gear for the modern explorer. We believe in high quality, single-color aesthetics, and lasting durability.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="margin-container">
+            <h2>Contact Us</h2>
+            <p>Email: support@warriorshop.com</p>
+            <p>Phone: +1 (234) 567-890</p>
+            <p>Address: 123 Stealth Blvd, Black City.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="margin-container">
+            <p>&copy; 2026 Warrior Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Interaction for Buttons
+        document.querySelectorAll('.btn-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Product added to cart!');
+            });
+        });
+
+        document.querySelectorAll('.btn-buy').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Redirecting to checkout...');
+            });
+        });
+    </script>
 </body>
 </html>
